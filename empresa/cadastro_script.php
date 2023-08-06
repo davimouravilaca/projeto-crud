@@ -22,11 +22,12 @@
             $sql = "INSERT INTO `pessoa` (`nome`, `endereco`, `telefone`, `email`, `dt_nascimento`) VALUES ('$nome', '$endereco', '$telefone', '$email', '$dt_nascimento')";
 
             if (mysqli_query($conn, $sql)) {
-                echo "$nome cadastrado com sucesso";
+                mensagem("$nome cadastrado com sucesso!", 'success');
             } else {
-                echo "$nome NÃO foi cadastrado";
+                mensagem("$nome NÃO foi cadastrado", 'danger');
             }
             ?>
+            <a href="index.html" class="btn-primary">Voltar</a>
 
         </div>
     </div>
