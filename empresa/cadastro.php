@@ -30,10 +30,11 @@
                     </div>
                     <div class="form-group">
                         <label for="dt_nascimento">Data de Nascimento</label>
-                        <input type="date" class="form-control" name="dt_nascimento">
+                        <input type="date" class="form-control" name="dt_nascimento"> <br>
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-sucess">
+                        <input type="submit" class="btn btn-success">
+                        <a href="index.php" class="btn btn-primary">Voltar para o início</a>
                     </div>
                 </form>
             </div>
