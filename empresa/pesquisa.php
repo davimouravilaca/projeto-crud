@@ -18,10 +18,15 @@
 
         include "conexao.php";
 
-        $sql = "SELECT * FROM pessoa WHERE nome LIKE '%$pesquisa%'";
+        $filtroPesquisa = $_POST['filtro'] ?? 'nome';
+
+        $sql = "SELECT * FROM pessoa WHERE $filtroPesquisa LIKE '%$pesquisa%'";
         
         $dados = mysqli_query($conn, $sql);
 
+
+
+        
     ?>
 
 
@@ -36,10 +41,17 @@
                             <button class="btn btn-outline-success" type="submit">Pesquisar</button>
                         <?php 
                         $busca = $_POST['busca'] ?? '';
-                        if ($busca != ''){                        
-                        echo "<button class='btn btn-outline-danger' type='submit'> X </button>";
+                        if ($busca != '') {
+                            echo "<form class='d-flex' action='" . $_SERVER['PHP_SELF'] . "' method='post' role='search'>";
+                            echo "<button class='btn btn-outline-danger' type='submit' name='busca' value=''> X </button></form>";
                         }
                         ?>
+                        <!-- Filtros de pesquisa -->
+                            <select name="filtro" class="form-select" aria-label="Default select example"  style="max-width: 100px;">
+                                <option value="nome"<?=filtroSelecionado("nome")?>>Nome</option>
+                                <option value="endereco"<?=filtroSelecionado("endereco")?>>Endereço</option>
+                                <option value="email"<?=filtroSelecionado("email")?>>Email</option>
+                            </select>
                         </form>
                     </div>
                 </nav> 
@@ -52,6 +64,7 @@
                             <th scope="col">Telefone</th>
                             <th scope="col">Email</th>
                             <th scope="col">Data de Nascimento</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,6 +77,7 @@
                         $telefone = $linha['telefone'];
                         $email = $linha['email'];
                         $dt_nascimento = $linha['dt_nascimento'];
+                        $dt_nascimento = mostraData($dt_nascimento);
                     
                     echo   "<tr>
                             <th scope='row'>$id</th>
@@ -72,6 +86,10 @@
                             <td>$telefone</td>
                             <td>$email</td>
                             <td>$dt_nascimento</td>
+                            <td>
+                                <a href='#' class='btn btn-success btn-sm'>Editar\u{270F}</a>
+                                <a href='#' class='btn btn-danger btn-sm'>Excluir\u{274C}</a>                  
+                            </td>
                         </tr>";
                     }
                     ?>
