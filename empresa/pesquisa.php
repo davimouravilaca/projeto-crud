@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <?php 
+    <?php //puxar dados do mysql
 
         if (isset($_POST['busca'])) {
             $pesquisa = $_POST['busca'];}
@@ -23,10 +23,6 @@
         $sql = "SELECT * FROM pessoa WHERE $filtroPesquisa LIKE '%$pesquisa%'";
         
         $dados = mysqli_query($conn, $sql);
-
-
-
-        
     ?>
 
 
@@ -39,22 +35,26 @@
                         <form class="d-flex" action="<?=$_SERVER['PHP_SELF']?>" method="post" role="search">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="busca" autofocus>
                             <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+
+                            <!-- Filtros de pesquisa-->                            
+                            <select name='filtro' class='form-select' aria-label='Default select example' style='max-width: 120px;'>
+                                <option value='nome'<?=filtroSelecionado('nome')?>>Nome</option>
+                                <option value='endereco'<?=filtroSelecionado('endereco')?>>Endereço</option>
+                                <option value='email'<?=filtroSelecionado('email')?>>Email</option>
+                            </select>  
+                        
+                        <!--Botão de X-->
                         <?php 
-                        $busca = $_POST['busca'] ?? '';
-                        if ($busca != '') {
-                            echo "<form class='d-flex' action='" . $_SERVER['PHP_SELF'] . "' method='post' role='search'>";
-                            echo "<button class='btn btn-outline-danger' type='submit' name='busca' value=''> X </button></form>";
-                        }
-                        ?>
-                        <!-- Filtros de pesquisa -->
-                            <select name="filtro" class="form-select" aria-label="Default select example"  style="max-width: 100px;">
-                                <option value="nome"<?=filtroSelecionado("nome")?>>Nome</option>
-                                <option value="endereco"<?=filtroSelecionado("endereco")?>>Endereço</option>
-                                <option value="email"<?=filtroSelecionado("email")?>>Email</option>
-                            </select>
+                            $busca = $_POST['busca'] ?? '';
+                            if ($busca != '') {
+                                echo "<form class='d-flex' action='" . $_SERVER['PHP_SELF'] . "' method='post' role='search'>";
+                                echo "<button class='btn btn-outline-danger' type='submit' name='busca' value=''> X </button></form>";
+                            }
+                            ?>
                         </form>
                     </div>
-                </nav> 
+                </nav>
+
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -87,7 +87,7 @@
                             <td>$email</td>
                             <td>$dt_nascimento</td>
                             <td>
-                                <a href='#' class='btn btn-success btn-sm'>Editar\u{270F}</a>
+                                <a href='cadastro_edit.php?id=$id' class='btn btn-success btn-sm'>Editar\u{270F}</a>
                                 <a href='#' class='btn btn-danger btn-sm'>Excluir\u{274C}</a>                  
                             </td>
                         </tr>";

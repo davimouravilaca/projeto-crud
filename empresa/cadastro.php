@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
+    <?php 
+    $anoAtual = date("Y");
+    ?>
     <div class ="container">
         <div class="row">
             <div class="col">
@@ -30,7 +33,7 @@
                     </div>
                     <div class="form-group">
                         <label for="dt_nascimento">Data de Nascimento</label>
-                        <input type="date" class="form-control" name="dt_nascimento"> <br>
+                        <input type="date" class="form-control" name="dt_nascimento" max="<?=$anoAtual.'-12-31'?>"> <br>
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-success">
