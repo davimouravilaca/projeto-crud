@@ -26,7 +26,7 @@
                 mensagem("$nome NÃO foi alterado", 'danger');
             }
             ?>
-            <a href="index.html" class="btn-primary">Voltar</a>
+            <a href="index.html" class="btn-primary">Voltar ao inicio.</a>
 
         </div>
     </div>
