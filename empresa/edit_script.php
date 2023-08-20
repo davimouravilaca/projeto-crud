@@ -17,8 +17,11 @@
             $telefone = $_POST['telefone'];
             $email = $_POST['email'];
             $dt_nascimento = $_POST['dt_nascimento'];
+            $foto = $_FILES['foto'];
+            //atributos do vetor FILES:
+            $nome_foto = mover_foto($foto);
 
-            $sql = "UPDATE `pessoa` set `nome` = '$nome', `endereco` = '$endereco', `telefone` = '$telefone', `email` = '$email', `dt_nascimento` = '$dt_nascimento' WHERE id = $id";
+            $sql = "UPDATE `pessoa` set `nome` = '$nome', `endereco` = '$endereco', `telefone` = '$telefone', `email` = '$email', `dt_nascimento` = '$dt_nascimento', `foto` = '$nome_foto' WHERE id = $id";
 
             if (mysqli_query($conn, $sql)) {
                 mensagem("$nome alterado com sucesso!", 'success');

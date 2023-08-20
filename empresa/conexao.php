@@ -1,5 +1,4 @@
 <?php 
-
     $server = "localhost";
     $user = "root";
     $pass = "";
@@ -29,4 +28,20 @@
         }
         }
 
+        function mover_foto($vetor_foto) {
+            if (!$vetor_foto['error'] && ($vetor_foto['size'] <= 500000)) {
+                $nome_foto = md5(date("Ymdhms") . "sorrizoronaldo") . ".jpg";
+                $caminho_destino = "img/" . $nome_foto;
+        
+                if (move_uploaded_file($vetor_foto['tmp_name'], $caminho_destino)) {
+                    return $nome_foto;
+                } else {
+                    // Erro ao mover o arquivo
+                    return false;
+                }
+            } else {
+                // Erro na foto (tamanho ou upload)
+                return false;
+            }
+        }        
 ?>

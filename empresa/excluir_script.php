@@ -22,7 +22,7 @@
                 mensagem("$nome NÃO foi excluido", 'danger');
             }
             ?>
-            <a href="pesquisa.php">Voltar</a>
+            <a href="pesquisa.php" class="btn btn-primary">Voltar</a>
         </div>
     </div>
 </body>

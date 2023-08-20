@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -58,7 +59,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
+                        <th scope="col">Foto</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Endereço</th>
                         <th scope="col">Telefone</th>
@@ -78,10 +79,10 @@
                     $email = $linha['email'];
                     $dt_nascimento = $linha['dt_nascimento'];
                     $dt_nascimento = mostraData($dt_nascimento);
-
+                    $foto = $linha['foto'];
                     echo   "<tr>
-                            <th scope='row'>$id</th>
-                            <td>$nome</td>
+                            <td><img src='img/$foto' class='lista_foto'></td>
+                            <th scope='row'>$nome</th>
                             <td>$endereco</td>
                             <td>$telefone</td>
                             <td>$email</td>
