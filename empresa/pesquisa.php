@@ -65,6 +65,7 @@
                         <th scope="col">Telefone</th>
                         <th scope="col">Email</th>
                         <th scope="col">Data de Nascimento</th>
+                        <th scope="col">Data de Cadastro</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -79,6 +80,8 @@
                     $email = $linha['email'];
                     $dt_nascimento = $linha['dt_nascimento'];
                     $dt_nascimento = mostraData($dt_nascimento);
+                    $dt_cad = $linha['dt_cad'];
+                    $dt_cad = mostraData($dt_cad);
                     $foto = $linha['foto'];
                     echo   "<tr>
                             <td><img src='img/$foto' class='lista_foto'></td>
@@ -87,6 +90,7 @@
                             <td>$telefone</td>
                             <td>$email</td>
                             <td>$dt_nascimento</td>
+                            <td>$dt_cad</td>
                             <td>
                                 <a href='cadastro_edit.php?id=$id' class='btn btn-success btn-sm'>Editar&#9999;</a>
                                 <a href='#confirma' type='button' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#confirma' onclick=" .'"' . "getData($id, '$nome')" . '"' .">Excluir&#10060;</a>                  

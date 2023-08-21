@@ -55,6 +55,7 @@
                         <a href="pesquisa.php" class="btn btn-primary">Voltar</a>
                     </div>
                     <input type="hidden" name="id" value="<?= $linha['id']?>">
+                    <input type="hidden" name="id" value="<?= $linha['dt_cad'] ?? null?>">
                 </form>
             </div>
         </div>

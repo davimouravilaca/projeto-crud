@@ -9,6 +9,8 @@
 <body>
     <?php 
     $anoAtual = date("Y");
+    $dataAtual = date("Y-m-d");
+    print($dataAtual);
     ?>
     <div class ="container">
         <div class="row">
@@ -45,6 +47,7 @@
                         <input type="submit" class="btn btn-success">
                         <a href="index.html" class="btn btn-primary">Voltar para o início</a>
                     </div>
+                    <input type="hidden" name="dt_cad" value="<?=$dataAtual?>">
                 </form>
             </div>
         </div>
