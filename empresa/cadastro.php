@@ -38,7 +38,7 @@
                         <input type="date" class="form-control" name="dt_nascimento" max="<?=$anoAtual.'-12-31'?>"> 
                         <div class="form-group">
                         <label for="foto">Foto</label>
-                        <input type="file" class="form-control" name="foto" accept="jpg">
+                        <input type="file" class="form-control" name="foto" accept="image/*">
                         <br>
                     </div>
                         <br>

@@ -31,8 +31,11 @@
         }
 
         function mover_foto($vetor_foto) {
-            if (!$vetor_foto['error'] && ($vetor_foto['size'] <= 500000)) {
-                $nome_foto = md5(date("Ymdhms") . "sorrizoronaldo") . ".jpg";
+            $vtipo = explode('/', $vetor_foto['type']);
+            $tipo = $vtipo[0] ?? '';
+            $extensao = "." . $vtipo[1];
+            if (!$vetor_foto['error'] && ($vetor_foto['size'] <= 500000) && ($tipo == "image")) {
+                $nome_foto = md5(date("Ymdhms") . "sorrizoronaldo") . $extensao;
                 $caminho_destino = "img/" . $nome_foto;
         
                 if (move_uploaded_file($vetor_foto['tmp_name'], $caminho_destino)) {

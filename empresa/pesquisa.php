@@ -83,8 +83,13 @@
                     $dt_cad = $linha['dt_cad'];
                     $dt_cad = mostraData($dt_cad);
                     $foto = $linha['foto'];
+                    if ($foto != null) {
+                        $mostra_foto = "<td><img src='img/$foto' class='lista_foto'></td>";
+                    } else {
+                        $mostra_foto == '';
+                    }
                     echo   "<tr>
-                            <td><img src='img/$foto' class='lista_foto'></td>
+                            $mostra_foto
                             <th scope='row'>$nome</th>
                             <td>$endereco</td>
                             <td>$telefone</td>

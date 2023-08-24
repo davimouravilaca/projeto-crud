@@ -14,21 +14,25 @@
             include "conexao.php";
 
             $nome = $_POST['nome'];
-            $endereco = $_POST['endereco'];
-            $telefone = $_POST['telefone'];
-            $email = $_POST['email'];
-            $dt_nascimento = $_POST['dt_nascimento'];
-            $dt_cad = $_POST['dt_cad'];
+            $endereco = $_POST['endereco'] ?? null;
+            $telefone = $_POST['telefone'] ?? null;
+            $email = $_POST['email'] ?? null;
+            $dt_nascimento = $_POST['dt_nascimento'] ?? null;
+            $dt_cad = $_POST['dt_cad'] ?? null;
 
             $foto = $_FILES['foto'];
             //atributos do vetor FILES:
             $nome_foto = mover_foto($foto);
+            if ($nome_foto== 0) {
+                $nome_foto = null;
+            }
 
             // Correção na construção da consulta SQL, utilizando aspas simples para delimitar os valores e adicionando o cifrão ($) na variável $dt_nascimento.
             $sql = "INSERT INTO `pessoa` (`nome`, `endereco`, `telefone`, `email`, `dt_nascimento`, `foto`, `dt_cad`) VALUES ('$nome', '$endereco', '$telefone', '$email', '$dt_nascimento', '$nome_foto', '$dt_cad')";
 
             if (mysqli_query($conn, $sql)) {
-                echo "<img src='img/$nome_foto' title='$nome_foto' class='mostra_foto'>";
+                if ($nome_foto != null){
+                echo "<img src='img/$nome_foto' title='$nome_foto' class='mostra_foto'>";}
                 mensagem("$nome cadastrado com sucesso!", 'success');
             } else {
                 mensagem("$nome NÃO foi cadastrado", 'danger');
