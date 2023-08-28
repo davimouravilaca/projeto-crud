@@ -31,22 +31,29 @@
         }
 
         function mover_foto($vetor_foto) {
-            $vtipo = explode('/', $vetor_foto['type']);
-            $tipo = $vtipo[0] ?? '';
-            $extensao = "." . $vtipo[1];
-            if (!$vetor_foto['error'] && ($vetor_foto['size'] <= 500000) && ($tipo == "image")) {
-                $nome_foto = md5(date("Ymdhms") . "sorrizoronaldo") . $extensao;
-                $caminho_destino = "img/" . $nome_foto;
+            if (isset($vetor_foto) && !empty($vetor_foto)) {
+                $vtipo = explode('/', $vetor_foto['type']);
+                $tipo = $vtipo[0] ?? '';
+                $extensao = "." . ($vtipo[1] ?? 'jpg'); // Defina uma extensão padrão, por exemplo, 'jpg'
         
-                if (move_uploaded_file($vetor_foto['tmp_name'], $caminho_destino)) {
-                    return $nome_foto;
+                if (!$vetor_foto['error'] && ($vetor_foto['size'] <= 500000) && ($tipo == "image")) {
+                    $nome_foto = md5(date("Ymdhms") . "sorrizoronaldo") . $extensao;
+                    $caminho_destino = "img/" . $nome_foto;
+            
+                    if (move_uploaded_file($vetor_foto['tmp_name'], $caminho_destino)) {
+                        return $nome_foto;
+                    } else {
+                        // Erro ao mover o arquivo
+                        return false;
+                    }
                 } else {
-                    // Erro ao mover o arquivo
+                    // Erro na foto (tamanho, tipo ou upload)
                     return false;
                 }
             } else {
-                // Erro na foto (tamanho ou upload)
+                // Nenhum arquivo foi enviado
                 return false;
             }
-        }        
+        }
+        
 ?>

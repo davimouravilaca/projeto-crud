@@ -20,10 +20,11 @@
             $dt_nascimento = $_POST['dt_nascimento'] ?? null;
             $dt_cad = $_POST['dt_cad'] ?? null;
 
-            $foto = $_FILES['foto'];
+            $foto = $_FILES['foto'] ?? null;
             //atributos do vetor FILES:
-            $nome_foto = mover_foto($foto);
-            if ($nome_foto== 0) {
+            if ($nome_foto =! null){
+            $nome_foto = mover_foto($foto);}
+            if ($nome_foto == 0) {
                 $nome_foto = null;
             }
 
