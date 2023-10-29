@@ -16,12 +16,9 @@
 
             $sql = "DELETE FROM `pessoa` WHERE id = $id";
 
-            if (mysqli_query($conn, $sql)) {
-                mensagem("$nome excluido com sucesso!", 'success');
-            } else {
-                mensagem("$nome NÃO foi excluido", 'danger');
-            }
-            ?>
+            $resultado = mysqli_query($conn, $sql);
+            mensagem($resultado ? "$nome excluído com sucesso!" : "$nome NÃO foi excluído", $resultado ? 'success' : 'danger');
+        ?>
             <a href="pesquisa.php" class="btn btn-primary">Voltar</a>
         </div>
     </div>
